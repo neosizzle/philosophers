@@ -32,6 +32,7 @@ void	free_mutexes(void)
 ** Frees the philo array
 ** 
 ** @param t_philo *philos	The philo array to be freed
+** @return void
 */
 void	free_philos(t_philo *philos)
 {

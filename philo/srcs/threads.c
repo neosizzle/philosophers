@@ -77,7 +77,7 @@ void	*phil_cycle(void *arg)
 		usleep(g_global.time_to_sleep * 1000);
 		print_status("is thinking\n", p_num);
 	}
-	return (NULL);
+	return (0);
 }
 
 /*

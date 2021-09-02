@@ -55,7 +55,6 @@ static void	init_mutexes(void)
 ** 
 ** @param char **argv	The program arguments
 ** @return void
-** TO DO: init mutexes
 */
 static void	init_globals(char *argv[])
 {
