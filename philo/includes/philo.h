@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jng <jng@student.42kl.edu>                 +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/02 12:17:19 by jng               #+#    #+#             */
+/*   Updated: 2021/09/02 12:17:19 by jng              ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PHILO_H
 # define PHILO_H
 
@@ -21,6 +33,7 @@ times_philo_eat - stores the num of times a philo has to eat (input)
 philos_fed - stores the num of philos successfully fed
 fork_mutex - stores the mutext of the forks in an array
 print_mutex - stores the mutext for printing results and incrementing philos fed
+start - 1 if the stimulation starts and 0 otherwise
 */
 typedef struct s_global {
 	int				philo_amount;
@@ -31,6 +44,7 @@ typedef struct s_global {
 	int				philos_fed;
 	pthread_mutex_t	*fork_mutex;
 	pthread_mutex_t	print_mutex;
+	int				start;
 }				t_global;
 
 /*
@@ -53,9 +67,20 @@ typedef struct s_philo {
 //Global variables
 extern t_global	g_global;
 
-//Free function
-void	free_mutexes();
+//Thread functions
+void		*phil_cycle(void *arg);
+void		*death_cycle(void *arg);
+void		end_cycle(t_philo *philo);
+pthread_t	*create_threads(t_philo *philo, void *(f)(void *));
+void		join_threads(pthread_t *th_cycle, pthread_t *th_death);
+
+//Free functions
+void		free_mutexes(void);
+void		free_philos(t_philo *philos);
 
 //Util functions
-int		ft_atoi(char *nptr);
+int			ft_atoi(char *nptr);
+size_t		get_time(void);
+void		print_status(char *str, int	p_num);
+
 #endif
