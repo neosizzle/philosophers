@@ -89,3 +89,26 @@ void	print_status(char *str, int	p_num)
 		printf("%lu %i %s", get_time(), p_num, str);
 	pthread_mutex_unlock(&(g_global.print_mutex));
 }
+
+/*
+** Custom usleep function that sleeps for n microseconds
+** Default usleep is unprecise 
+** 
+** @param unsigned int n	Microseconds to sleep
+** @return void
+*/
+void	ft_usleep(unsigned int n)
+{
+	struct timeval	begin;
+	struct timeval	temp;
+
+	gettimeofday(&begin, NULL);
+	while (1)
+	{
+		usleep(50);
+		gettimeofday(&temp, NULL);
+		if ((size_t)(((size_t)(temp.tv_sec - begin.tv_sec)) * 1000000 +
+				((size_t)(temp.tv_usec - begin.tv_usec))) > n)
+			break ;
+	}
+}

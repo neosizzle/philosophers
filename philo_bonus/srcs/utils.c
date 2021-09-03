@@ -59,36 +59,6 @@ size_t	get_time(void)
 }
 
 /*
-** Turns off stimulation and sets everything to 0
-** 
-** @param void
-** @return void
-*/
-void	end_cycle(void)
-{
-	g_global.simulate = 0;
-	g_global.time_to_die = 0;
-	g_global.time_to_eat = 0;
-	g_global.time_to_sleep = 0;
-}
-
-/*
-** Increments the start semaphore so the chilren can
-** consume and start the process
-** 
-** @param void
-** @return void
-*/
-void	start_cycle(void)
-{
-	int	i;
-
-	i = -1;
-	while (++i < g_global.philo_amount)
-		sem_post(g_global.start);
-}
-
-/*
 ** Prints out status in the format of
 ** [timestamp] [p_num] [status]
 ** 
@@ -100,4 +70,27 @@ void	print_status(char *str, int	p_num)
 {
 	if (g_global.simulate)
 		printf("%lu %i %s", get_time(), p_num, str);
+}
+
+/*
+** Custom usleep function that sleeps for n microseconds
+** Default usleep is unprecise 
+** 
+** @param unsigned int n	Microseconds to sleep
+** @return void
+*/
+void	ft_usleep(unsigned int n)
+{
+	struct timeval	begin;
+	struct timeval	temp;
+
+	gettimeofday(&begin, NULL);
+	while (1)
+	{
+		usleep(50);
+		gettimeofday(&temp, NULL);
+		if ((size_t)(((size_t)(temp.tv_sec - begin.tv_sec)) * 1000000 +
+				((size_t)(temp.tv_usec - begin.tv_usec))) > n)
+			break ;
+	}
 }

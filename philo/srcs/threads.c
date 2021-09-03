@@ -32,7 +32,7 @@ void	eat(t_philo *philo)
 	if (g_global.philos_fed >= g_global.philo_amount)
 		end_cycle(philo);
 	pthread_mutex_unlock(&(g_global.print_mutex));
-	usleep(g_global.time_to_eat * 1000);
+	ft_usleep(g_global.time_to_eat * 1000);
 }
 
 /*
@@ -66,7 +66,7 @@ void	*phil_cycle(void *arg)
 	philo->last_time_eaten = get_time();
 	print_status("is thinking\n", philo->philo_num);
 	if (philo->philo_num % 2 == 0)
-		usleep(10000);
+		ft_usleep(10000);
 	while (g_global.start)
 	{
 		pthread_mutex_lock(&(g_global.fork_mutex[philo->fork_one]));
@@ -77,7 +77,7 @@ void	*phil_cycle(void *arg)
 		pthread_mutex_unlock(&(g_global.fork_mutex[philo->fork_one]));
 		pthread_mutex_unlock(&(g_global.fork_mutex[philo->fork_two]));
 		print_status("is sleeping\n", p_num);
-		usleep(g_global.time_to_sleep * 1000);
+		ft_usleep(g_global.time_to_sleep * 1000);
 		print_status("is thinking\n", p_num);
 	}
 	return (0);
@@ -113,7 +113,7 @@ void	*death_cycle(void *arg)
 		;
 	while (g_global.start)
 	{
-		usleep(time_to_die * 1000);
+		ft_usleep(time_to_die * 1000);
 		curr_time = get_time();
 		if (curr_time >= philo->last_time_eaten + time_to_die || p_cnt == 1)
 		{

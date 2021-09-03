@@ -83,5 +83,7 @@ void		free_philos(t_philo *philos);
 int			ft_atoi(char *nptr);
 size_t		get_time(void);
 void		print_status(char *str, int	p_num);
+void		ft_usleep(unsigned int n);
+void		print_status(char *str, int	p_num);
 
 #endif

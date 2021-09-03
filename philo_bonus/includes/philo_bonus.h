@@ -83,6 +83,8 @@ void	wait_children(int *child_pids);
 void	*death_cycle(void *arg);
 void	*end_handle(void *arg);
 void	philo_cycle(void);
+void	end_cycle(void);
+void	start_cycle(void);
 
 //Free functions
 void	close_sems(void);
@@ -90,8 +92,7 @@ void	close_sems(void);
 //Util functions
 int		ft_atoi(char *nptr);
 size_t	get_time(void);
-void	end_cycle(void);
-void	start_cycle(void);
 void	print_status(char *str, int	p_num);
+void	ft_usleep(unsigned int n);
 
 #endif
