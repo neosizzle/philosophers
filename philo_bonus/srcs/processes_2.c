@@ -12,7 +12,6 @@
 
 #include "philo_bonus.h"
 
-
 /*
 ** Turns off stimulation and sets everything to 0
 ** 
@@ -42,7 +41,6 @@ void	start_cycle(void)
 	while (++i < g_global.philo_amount)
 		sem_post(g_global.start);
 }
-
 
 /*
 ** This func will call waitpid on each child process
