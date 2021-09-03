@@ -152,6 +152,8 @@ void	philo_cycle(void)
 	g_global.simulate = 1;
 	g_philo.last_time_eaten = get_time();
 	print_status("is thinking\n", p_num);
+	if (p_num % 2 == 0)
+		usleep(10000);
 	while (g_global.simulate)
 	{
 		sem_wait(g_global.forks);
