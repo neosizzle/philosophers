@@ -1,7 +1,7 @@
 SRCS=./srcs/*.c
 GCC=gcc -Wall -Wextra -Werror -fsanitize=address -g -pthread
 INCLUDES=./includes
-NAME=philo
+NAME=philo_bonus
 
 all : ${NAME}
 
